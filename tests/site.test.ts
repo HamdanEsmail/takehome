@@ -4,7 +4,8 @@ import { seal } from "../src/core/seal.ts";
 import { buildSite } from "../src/site/build.ts";
 
 const exp = sampleExport();
-const site = buildSite(seal(exp, "a-test-salt"), exp, { codeUrl: "https://github.com/HamdanEsmail/takehome" });
+const facts = { equal: 12, differs: 1, notOnPage: 1, asText: 7, leftOut: 2, spentUsd: 1.89 };
+const site = buildSite(seal(exp, "a-test-salt"), exp, facts, { codeUrl: "https://github.com/HamdanEsmail/takehome" });
 const pages = Object.entries(site).filter(([path]) => path.endsWith(".html"));
 
 /** The export's own words: titles, codes, names of documents, announcements. */
@@ -40,10 +41,18 @@ describe("the public site", () => {
 
   it("shows one door per course, with a padlock on the locked one", () => {
     const home = site["index.html"]!;
-    expect(home.match(/<li class="locker/g)).toHaveLength(6);
+    expect(home.match(/<a class="locker/g)).toHaveLength(6);
     expect(home.match(/class="padlock"/g)).toHaveLength(1);
     expect(home).toContain("Locked by the university");
     expect(home).toContain("locked 1 of my 6 courses");
+  });
+
+  it("gives every door a panel of counts to open, and says what was checked", () => {
+    const home = site["index.html"]!;
+    expect(home.match(/<article class="detail" id="locker-[0-9][0-9]"/g)).toHaveLength(6);
+    expect(home).toContain('href="#locker-03"');
+    expect(home).toContain("<b>12</b> scores the Agent read equal the portal's own");
+    expect(home).toContain("7 searchable");
   });
 
   it("carries my name and link in the foot of every page", () => {
@@ -58,6 +67,6 @@ describe("the public site", () => {
   it("escapes what it prints", () => {
     const odd = seal(exp, "a-test-salt");
     odd.lockers[0]!.term = '<script>alert("x")</script>';
-    expect(buildSite(odd, exp, { codeUrl: "https://example.test" })["index.html"]).not.toContain("<script>alert");
+    expect(buildSite(odd, exp, facts, { codeUrl: "https://example.test" })["index.html"]).not.toContain("<script>alert");
   });
 });

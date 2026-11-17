@@ -14,7 +14,7 @@
 <body>
 <div class="wrap"><header class="top"><a class="mark" href="/"><i></i>Takehome</a><nav aria-label="Pages"><a href="/">Locker row</a><a href="/sample/">Sample locker</a><a href="/how/">How it works</a><a href="/privacy/" aria-current="page">Privacy</a><a href="https://github.com/HamdanEsmail/takehome">Code</a></nav></header></div>
 <main><div class="wrap"><section class="hero" style="padding-bottom:10px"><h1 style="max-width:15ch">What leaves my computer.</h1>
-<p>One file: the sealed list. It is built from an allow-list, so a field that is not named there cannot be published by mistake.</p></section>
+<p>One file: the sealed list, and a handful of totals. The list is built from an allow-list, so a field that is not named there cannot be published by mistake.</p></section>
 <section style="padding-top:20px"><div class="two">
 <div><h2>In the sealed list</h2><ul class="plain">
 <li>How many courses, and how many the university has locked</li>
@@ -30,7 +30,7 @@
 <li>The portal's ids, and TinyFish's run ids</li>
 <li>The length of a name: the bars on each door take their length from the fingerprint, because a real length could give a course away to anyone holding the catalogue</li>
 </ul></div></div>
-<p class="note" style="margin-top:26px">A test builds the sealed list from an export and fails if any word of that export appears in it. You can read the list this site was built from: <a href="/sealed.json">sealed.json</a>.</p>
+<p class="note" style="margin-top:26px">A test builds the sealed list and this site from an export and fails if any word of that export appears in them. You can read the list this site was built from: <a href="/sealed.json">sealed.json</a>.</p>
 </section></div>
 <section class="band"><div class="wrap two">
 <div><h2>My sign-in</h2><ul class="plain">
@@ -39,11 +39,11 @@
 <li>I do not use the password vault: it would store my university password with a third party.</li>
 <li>When I am done I delete the profile on TinyFish, and the saved session is gone.</li>
 </ul></div>
-<div><h2>Other people</h2><ul class="plain">
+<div><h2>Other people, and TinyFish</h2><ul class="plain">
 <li>Only my own account, and only reading.</li>
 <li>Classmates' names and posts are not exported. A conversation is kept as its date and its number of messages.</li>
+<li>TinyFish sees what its Agent and its browser see, and Fetch reads each PDF and Word file to return its text. That is the service doing its work; nothing goes anywhere else.</li>
 <li>TinyFish's run pages hold real pictures of my portal, so their links go to the judges only.</li>
-<li>The films blur every text area in code, frame by frame, before anything is cut.</li>
 </ul></div>
 </div></section></main>
 <footer><div class="wrap"><span>Built by <a href="https://github.com/HamdanEsmail">Hamdan Esmail</a> for the TinyFish Student Bounty, Drop 002.</span><nav aria-label="More"><a href="https://github.com/HamdanEsmail/takehome">Source code</a><a href="/how/">How it works</a><a href="/privacy/">Privacy</a><a href="/sealed.json">The sealed list</a></nav></div></footer>

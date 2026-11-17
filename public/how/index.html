@@ -20,17 +20,18 @@
 <li><div><h3>The portal says what it holds</h3><p>Through that same signed-in TinyFish browser, Takehome reads the data Blackboard's own pages load for themselves: every course and term, the content of each course, the graded work, the announcements. It only ever asks to read.</p></div></li>
 <li><div><h3>The TinyFish Agent reads each Grades page</h3><p>One Agent run per course, on the saved sign-in, returns every row exactly as the page shows it. A Grades page takes the Agent about three steps. A second kind of run reads the overview of all my courses, locked ones included.</p></div></li>
 <li><div><h3>Every reading is checked</h3><p>The Agent's rows must be the portal's own rows, and each score must equal the portal's at the precision the page shows. A reading that fails is read once more, and if it fails again its rows stay marked "not read". Nothing is filled in.</p></div></li>
-<li><div><h3>Only what changed is read again</h3><p>Each course gets a fingerprint of everything in it. A rerun sends the Agent only to courses whose fingerprint moved, and merges by the portal's own ids, so a row is never taken twice.</p></div></li>
+<li><div><h3>Only what changed is read again</h3><p>Content, announcements and documents come from the portal's own data on every run, which costs nothing. The Agent is sent only to courses whose graded work is not what the export already holds. Rows are merged by the portal's own ids, so none is taken twice.</p></div></li>
 <li><div><h3>The documents come home whole</h3><p>The signed-in browser asks the portal where each document is; the portal answers with a link that works for a short time, and the bytes are saved with their SHA-256. Files over 25 MB are listed, not fetched.</p></div></li>
+<li><div><h3>The documents become searchable</h3><p>TinyFish Fetch reads the same short-lived link and returns the text of each PDF and Word file. One command then looks inside all of them.</p></div></li>
 </ol></section></div>
 <section class="band"><div class="wrap two">
 <div><h2>Where TinyFish is used</h2><div class="scroll"><table><thead><tr><th>TinyFish</th><th>What it does here</th></tr></thead><tbody>
 <tr><td>Agent</td><td>Reads the Grades overview and each course's Grades page on the saved sign-in, against a fixed answer shape</td></tr>
-<tr><td>Browser Context Profile</td><td>Holds the sign-in I made by hand; each use is saved back so the next run still lands signed in</td></tr>
-<tr><td>The profile's browser</td><td>Reads what the portal itself reports, for the check, and fetches the documents</td></tr>
+<tr><td>Fetch</td><td>Turns each PDF and Word file into text, so the export can be searched</td></tr>
+<tr><td>Browser Context Profile</td><td>Holds the sign-in I made by hand. Its browser reads what the portal itself reports, for the check, and asks where each document is</td></tr>
 <tr><td>Runs</td><td>Follows every Agent run to its end and records its steps and its cost</td></tr>
 </tbody></table></div>
-<p class="lead" style="margin-top:14px">So far: 69 Agent steps, $1.10, for 109 graded items in 12 open courses.</p></div>
+<p class="lead" style="margin-top:14px">So far: 69 Agent steps in the runs listed on the first page, $1.52 spent in all with the first tests, for 109 graded items in 12 open courses.</p></div>
 <div><h2>What it will not do</h2><ul class="plain">
 <li>Change anything. Every Agent goal forbids Submit, Start, Begin, Send, Save, Delete and Mark.</li>
 <li>Open a test I have not taken. Only the Grades page is read.</li>
@@ -45,6 +46,7 @@
   export.json          everything, one file: courses, items, grades, files, announcements, messages, runs
   csv/                 one CSV per table, the same columns on every line
   files/&lt;course&gt;/      the documents themselves
+  text/&lt;course&gt;/       PDFs and Word files as text
   changes/run-2.json   what each run added or changed
   manifest.json        counts and checks per course, every run, every dollar
   sealed.json          the only file that is ever published</pre>

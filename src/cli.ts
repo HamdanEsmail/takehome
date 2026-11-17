@@ -97,7 +97,9 @@ ${h.course} / ${h.name}
   }
   const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
   const { sampleExport } = await import("../fixtures/sample.ts");
-  const files = buildSite(JSON.parse(readFileSync(sealedPath, "utf8")), sampleExport(), { codeUrl: process.env.TAKEHOME_CODE_URL ?? "https://github.com/HamdanEsmail/takehome" });
+  const m = JSON.parse(readFileSync(join(config().dataDir, "manifest.json"), "utf8"));
+  const facts = { equal: m.gradeChecks.match, differs: m.gradeChecks.differs, notOnPage: m.gradeChecks["not on page"], asText: m.totals.documentsAsText ?? 0, leftOut: m.totals.documentsLeftOut, spentUsd: m.spend.usd };
+  const files = buildSite(JSON.parse(readFileSync(sealedPath, "utf8")), sampleExport(), facts, { codeUrl: process.env.TAKEHOME_CODE_URL ?? "https://github.com/HamdanEsmail/takehome" });
   for (const [path, text] of Object.entries(files)) {
     const to = join(root, "public", path);
     mkdirSync(dirname(to), { recursive: true });

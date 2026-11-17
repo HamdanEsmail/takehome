@@ -79,6 +79,34 @@ function render() {
     panel());
 }
 
+/** Rows of the open export that hold every word asked for: graded work, content, documents, announcements. */
+function searchRows(question) {
+  const words = question.toLowerCase().split(/\s+/).filter(Boolean);
+  if (!exp || words.length === 0) return [];
+  const course = new Map(exp.courses.map((c) => [c.id, c.title]));
+  const out = [];
+  const take = (tabName, kind, courseId, text) => {
+    const low = text.toLowerCase();
+    if (words.every((w) => low.includes(w))) out.push({ tab: tabName, kind, courseId, text, course: course.get(courseId) ?? "" });
+  };
+  for (const g of exp.grades) take("grades", "Graded item", g.courseId, g.title);
+  for (const i of exp.items) take("items", "Content", i.courseId, i.title);
+  for (const f of exp.files) take("files", "Document", f.courseId, f.name);
+  for (const a of exp.announcements) take("announcements", "Announcement", a.courseId, `${a.title}. ${a.body}`);
+  return out;
+}
+
+function showHits(question) {
+  const hits = searchRows(question);
+  $("#found").textContent = question.trim() ? `${hits.length} ${hits.length === 1 ? "row holds" : "rows hold"} those words.` : "";
+  $("#hits").replaceChildren(...hits.slice(0, 12).map((h) => el("li", {},
+    el("span", { class: "kind" }, h.kind),
+    el("button", { type: "button", onclick: () => { courseId = h.courseId; tab = h.tab; render(); $("#viewer").scrollIntoView({ block: "nearest" }); } }, h.text.length > 110 ? `${h.text.slice(0, 110)}…` : h.text),
+    el("span", { class: "mono" }, `  ${h.course}`))));
+}
+
+$("#q").addEventListener("input", (e) => showHits(e.target.value));
+
 $("#own").addEventListener("change", async (e) => {
   const file = e.target.files?.[0];
   if (!file) return;
