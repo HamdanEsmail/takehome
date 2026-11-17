@@ -1,12 +1,14 @@
 // Takehome's command line.
 //   node src/cli.ts export [--until YYYY-MM-DD] [--full] [--no-files] [--max-file-mb 25]
 //   node src/cli.ts status
+//   node src/cli.ts search <words>   looks inside the documents that were turned into text
 //   node src/cli.ts site      builds the public site into ./public from the sealed list
 // Settings come from a file outside the repository (see .env.example); nothing secret is ever an argument.
 import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { runExport, SignInNeeded, type Config } from "./run/export.ts";
+import { findInTexts, type DocText } from "./core/search.ts";
 import { loadSettings } from "./settings.ts";
 import { buildSite } from "./site/build.ts";
 
@@ -48,7 +50,7 @@ if (command === "export") {
     process.exit(2);
   }
   try {
-    const out = await runExport(cfg, { until, full: flag("full"), files: !flag("no-files"), maxFileMb: Number(value("max-file-mb") ?? "25"), log: (line) => console.log(line) });
+    const out = await runExport(cfg, { until, full: flag("full"), files: !flag("no-files"), text: !flag("no-text"), maxFileMb: Number(value("max-file-mb") ?? "25"), log: (line) => console.log(line) });
     console.log(`\nDone: ${out.run.kind} ${out.run.id}, ${out.run.added} new rows, ${out.run.changed} changed, ${out.run.steps} Agent steps ($${out.run.usd.toFixed(3)}).`);
     console.log(`The export now holds ${Object.entries(out.totals).map(([k, n]) => `${n} ${k}`).join(", ")}; ${out.saved} documents saved. Spent so far: $${out.spentUsd.toFixed(2)} of $${cfg.capUsd.toFixed(2)}.`);
     console.log(`It is in ${cfg.dataDir}`);
@@ -68,6 +70,25 @@ if (command === "export") {
   console.log(`Grade checks: ${Object.entries(m.gradeChecks).map(([k, n]) => `${k} ${n}`).join(", ")}`);
   console.log(`Runs: ${m.runs.map((r: { id: string; kind: string; added: number; changed: number; steps: number }) => `${r.id} ${r.kind} +${r.added} ~${r.changed} (${r.steps} steps)`).join("; ")}`);
   console.log(`Spent $${m.spend.usd.toFixed(2)} of $${m.spend.capUsd.toFixed(2)}`);
+} else if (command === "search") {
+  const dir = config().dataDir;
+  if (!existsSync(join(dir, "state.json")) || !existsSync(join(dir, "export.json"))) {
+    console.log("No export yet. Run: node src/cli.ts export");
+    process.exit(0);
+  }
+  const state = JSON.parse(readFileSync(join(dir, "state.json"), "utf8")) as { texts?: Record<string, { path: string }> };
+  const exp = JSON.parse(readFileSync(join(dir, "export.json"), "utf8")) as { files: Array<{ id: string; name: string; courseId: string }>; courses: Array<{ id: string; code: string }> };
+  const code = new Map(exp.courses.map((c) => [c.id, c.code]));
+  const docs: DocText[] = [];
+  for (const f of exp.files) {
+    const t = state.texts?.[f.id];
+    if (t && existsSync(join(dir, t.path))) docs.push({ id: f.id, course: code.get(f.courseId) ?? f.courseId, name: f.name, text: readFileSync(join(dir, t.path), "utf8") });
+  }
+  const hits = findInTexts(docs, args.slice(1).join(" "));
+  console.log(`${hits.length} of ${docs.length} searchable documents hold those words.`);
+  for (const h of hits.slice(0, 25)) console.log(`
+${h.course} / ${h.name}
+  ${h.snippet}`);
 } else if (command === "site") {
   const sealedPath = join(config().dataDir, "sealed.json");
   if (!existsSync(sealedPath)) {
@@ -86,6 +107,6 @@ if (command === "export") {
   for (const asset of ["site.css", "viewer.js"]) copyFileSync(join(root, "site", asset), join(root, "public", "assets", asset));
   console.log(`Built ${Object.keys(files).length} files into public/ from the sealed list.`);
 } else {
-  console.error(`Unknown command "${command}". Use: export, status, site.`);
+  console.error(`Unknown command "${command}". Use: export, status, search, site.`);
   process.exit(2);
 }

@@ -2,7 +2,9 @@
 //  - Profiles: the saved sign-in, and a browser opened on it (setup session)
 //  - Agent: one run per page to read, on the saved sign-in
 //  - Runs: following each run to its end
+//  - Fetch: turning a document into text, from the short-lived link the portal gives for it
 const BASE = "https://agent.tinyfish.ai";
+const FETCH = "https://api.fetch.tinyfish.ai";
 
 export interface AgentRun {
   run_id: string;
@@ -105,5 +107,20 @@ export class TinyFish {
       if (Date.now() > until) throw new Error(`Run ${runId} was still ${run.status} after ${Math.round(waitMs / 1000)} s.`);
       await new Promise((r) => setTimeout(r, 5000));
     }
+  }
+
+  /**
+   * TinyFish Fetch reads each address and gives back its text. Used on the short-lived links the
+   * portal hands out for documents: a PDF or a Word file comes back as text that can be searched.
+   * A document Fetch cannot read is simply missing from the answer.
+   */
+  async fetchText(urls: string[]): Promise<Map<string, string>> {
+    const out = new Map<string, string>();
+    if (urls.length === 0) return out;
+    const res = await fetch(FETCH, { method: "POST", headers: { "X-API-Key": this.#key, "content-type": "application/json" }, body: JSON.stringify({ urls, format: "markdown" }), signal: AbortSignal.timeout(120_000) });
+    if (!res.ok) return out;
+    const answer = (await res.json()) as { results?: Array<{ url: string; text?: string }> };
+    for (const r of answer.results ?? []) if (r.text && r.text.trim()) out.set(r.url, r.text);
+    return out;
   }
 }

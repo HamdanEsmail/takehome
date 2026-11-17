@@ -35,6 +35,8 @@ export interface Options {
   /** Read every open course again, changed or not. */
   full: boolean;
   files: boolean;
+  /** Turn PDFs and Word files into text with TinyFish Fetch, so the export can be searched. */
+  text: boolean;
   maxFileMb: number;
   log: (line: string) => void;
 }
@@ -59,6 +61,8 @@ interface State {
   readings: Record<string, CourseReading>;
   /** Documents left out on purpose, with the reason. */
   skipped: Record<string, string>;
+  /** Documents that were turned into text: where the text is, and how long it is. */
+  texts?: Record<string, { path: string; chars: number }>;
   overview: Overview | null;
 }
 
@@ -231,6 +235,21 @@ export async function runExport(cfg: Config, opt: Options) {
     let opened = 0;
     let live: Portal | null = null;
     let done = 0;
+    // Documents waiting to be turned into text. Their links work only for a short time, so the
+    // batch is sent as soon as it holds five.
+    let batch: Array<{ id: string; url: string; place: string }> = [];
+    const texts = (state.texts ??= {});
+    const readTexts = async () => {
+      const got = await api.fetchText(batch.map((b) => b.url)).catch(() => new Map<string, string>());
+      for (const b of batch) {
+        const text = got.get(b.url);
+        if (!text) continue;
+        const path = `text/${b.place.slice("files/".length)}.md`;
+        writeWhole(at(path), text);
+        texts[b.id] = { path, chars: text.length };
+      }
+      batch = [];
+    };
     try {
       for (const f of todo) {
         if (!live || Date.now() - opened > BROWSER_MS) {
@@ -252,6 +271,13 @@ export async function runExport(cfg: Config, opt: Options) {
         let bytes: Buffer | null = null;
         if (!link.url.startsWith(cfg.origin)) {
           const res = await fetch(link.url, { signal: AbortSignal.timeout(180_000) }).catch(() => null);
+          const size = Number(res?.headers.get("content-length") ?? 0);
+          if (res?.ok && size > opt.maxFileMb * 1_048_576) {
+            await res.body?.cancel().catch(() => {});
+            f.bytes = size;
+            state.skipped[f.id] = `larger than ${opt.maxFileMb} MB`;
+            continue;
+          }
           if (res?.ok) bytes = Buffer.from(await res.arrayBuffer());
         }
         bytes ??= await live.fileBytes(f.source);
@@ -264,11 +290,16 @@ export async function runExport(cfg: Config, opt: Options) {
         f.bytes = bytes.length;
         f.sha256 = createHash("sha256").update(bytes).digest("hex");
         f.path = place;
+        if (opt.text && /\.(pdf|docx?)$/i.test(f.name) && !link.url.startsWith(cfg.origin)) {
+          batch.push({ id: f.id, url: link.url, place });
+          if (batch.length >= 5) await readTexts();
+        }
         if (++done % 25 === 0) {
           write(changes);
           log(`  ${done} of ${todo.length} documents saved.`);
         }
       }
+      if (batch.length) await readTexts();
     } finally {
       if (live) await live.close(true);
     }
@@ -285,7 +316,7 @@ function manifest(exp: Export, state: State, members: Membership[], ledger: Ledg
   return {
     portal: exp.portal,
     exportedAt: exp.exportedAt,
-    totals: { ...Object.fromEntries(TABLES.map((t) => [t, exp[t].length])), locked: exp.courses.filter((c) => c.state === "locked").length, documentsSaved: exp.files.filter((f) => f.path).length, documentsLeftOut: Object.keys(state.skipped).length },
+    totals: { ...Object.fromEntries(TABLES.map((t) => [t, exp[t].length])), locked: exp.courses.filter((c) => c.state === "locked").length, documentsSaved: exp.files.filter((f) => f.path).length, documentsLeftOut: Object.keys(state.skipped).length, documentsAsText: Object.keys(state.texts ?? {}).length },
     gradeChecks: Object.fromEntries(["match", "differs", "not on page", "unread"].map((k) => [k, exp.grades.filter((g) => g.check === k).length])),
     overview: state.overview,
     courses: exp.courses.map((c) => ({
