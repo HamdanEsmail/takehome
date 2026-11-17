@@ -1,0 +1,25 @@
+{
+  "name": "takehome",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Takehome: take everything out of a student portal that has no export button. A TinyFish Agent walks the portal on a saved sign-in, read-only, and writes one clean JSON, CSV files and the documents. Run it again and it takes only what is new.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "check": "tsc --noEmit && vitest run && wrangler deploy --dry-run",
+    "takehome": "node src/cli.ts",
+    "site": "node src/cli.ts site",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "7.0.2",
+    "vitest": "5.1.0",
+    "wrangler": "4.157.0"
+  }
+}

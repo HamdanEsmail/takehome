@@ -1,0 +1,21 @@
+node_modules/
+dist/
+.wrangler/
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+!.env.example
+*.log
+.vitest/
+.superpowers/
+.taste-skill/
+.scratch/
+tests/*.local.test.ts
+
+# The real export never belongs in this repository. It is written outside it by default
+# (see TAKEHOME_DATA in .env.example); these lines are a second lock.
+data/
+export/
+takehome-data/
+*.real.json

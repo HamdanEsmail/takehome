@@ -1,0 +1,10 @@
+{
+  // The public site is a folder of plain files, built on my computer from the sealed list.
+  // There is no server code and no database behind it, so there is nothing here that could hold my real export.
+  "name": "takehome",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  }
+}
