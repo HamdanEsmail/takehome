@@ -28,7 +28,8 @@ function week(courseId: string, label: string, docs: Array<[name: string, bytes:
   for (const [name, bytes] of docs) {
     const item: Item = { id: next("7"), courseId, parentId: folder.id, kind: "document", title: name, dueAt: null };
     items.push(item);
-    files.push({ id: next("8"), courseId, itemId: item.id, name, bytes, sha256: null, path: null });
+    const fileId = next("8");
+    files.push({ id: fileId, courseId, itemId: item.id, name, source: `/sample/files/${fileId}`, bytes, sha256: null, path: null });
   }
   if (work) {
     const [title, kind, due, score, possible] = work;

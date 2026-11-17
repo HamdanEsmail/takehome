@@ -5,7 +5,7 @@ export const COLUMNS: Record<Table, readonly string[]> = {
   courses: ["id", "code", "title", "term", "state"],
   items: ["id", "courseId", "parentId", "kind", "title", "dueAt"],
   grades: ["id", "courseId", "title", "score", "possible", "status", "submittedAt", "shown", "check"],
-  files: ["id", "courseId", "itemId", "name", "bytes", "sha256", "path"],
+  files: ["id", "courseId", "itemId", "name", "source", "bytes", "sha256", "path"],
   announcements: ["id", "courseId", "title", "body", "postedAt"],
   messages: ["id", "courseId", "subject", "sentAt"],
 };

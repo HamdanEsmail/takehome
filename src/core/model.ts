@@ -49,6 +49,8 @@ export interface FileRef {
   courseId: string;
   itemId: string | null;
   name: string;
+  /** The portal's own address for the document, without the host. */
+  source: string;
   bytes: number | null;
   sha256: string | null;
   /** Where the document was saved, relative to the export folder; null while only its listing is known. */
