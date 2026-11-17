@@ -4,6 +4,8 @@
 
 Site: https://takehome.hamdanesmail12-7a9.workers.dev · [The sample locker](https://takehome.hamdanesmail12-7a9.workers.dev/sample/) · [How it works](https://takehome.hamdanesmail12-7a9.workers.dev/how/)
 
+![The first page of Takehome: my 17 courses as a row of sealed lockers, 5 of them locked by the university](docs/home.png)
+
 My university runs its coursework on Blackboard. There is no export button, and the portal has already locked 5 of my 17 courses: their pages say the instructor "will allow access when the course is ready". Takehome works from a sign-in I make once by hand inside TinyFish. It has the TinyFish Agent read my Grades pages, checks every reading against what the portal itself reports, and writes everything to one JSON file, six CSV files and a folder of documents. Run it again and it takes only what is new.
 
 ```bash
