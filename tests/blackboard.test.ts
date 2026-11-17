@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { courseRow, cut, filesInBody, fingerprint, htmlToText, kindOf, mapCourse, type RawCourse } from "../src/core/blackboard.ts";
+import { courseRow, cut, filesInBody, htmlToText, kindOf, mapCourse, type RawCourse } from "../src/core/blackboard.ts";
 
 // A made-up course, in the shape the portal's own feed has.
 const raw = (): RawCourse => ({
@@ -94,27 +94,5 @@ describe("stopping a first export at a date", () => {
 
   it("takes everything when no date is given", () => {
     expect(mapCourse("_9_1", cut(raw(), null)).grades).toHaveLength(4);
-  });
-});
-
-describe("a course's fingerprint", () => {
-  it("stays the same when nothing changed, whatever order the feed uses", () => {
-    const a = raw();
-    const b = raw();
-    b.columns.reverse();
-    b.contents.reverse();
-    expect(fingerprint(b)).toBe(fingerprint(a));
-    expect(fingerprint(a)).toMatch(/^[0-9a-f]{16}$/);
-  });
-
-  it("changes when a grade, a document or an announcement changes", () => {
-    const base = fingerprint(raw());
-    const graded = raw();
-    graded.grades.push({ columnId: "_73_1", status: "Graded", score: 38, first: null, last: "2026-12-12T10:00:00.000Z" });
-    const edited = raw();
-    edited.contents[1]!.modified = "2026-11-17T06:00:00.000Z";
-    const told = raw();
-    told.announcements.push({ id: "_92_1", title: "Room change", body: "", start: null, created: "2026-11-17T05:00:00.000Z" });
-    expect(new Set([base, fingerprint(graded), fingerprint(edited), fingerprint(told)]).size).toBe(4);
   });
 });

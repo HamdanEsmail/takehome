@@ -2,7 +2,6 @@
 // The feed is the data the portal's pages load for themselves. It is read through the signed-in
 // TinyFish browser (src/portal), cut down there to the few fields below, and mapped here.
 // Nothing in this file touches the network.
-import { createHash } from "node:crypto";
 import type { Announcement, Course, FileRef, Grade, Item, Kind, Message } from "./model.ts";
 
 export interface RawMembership {
@@ -170,17 +169,4 @@ export function mapCourse(courseId: string, raw: RawCourse): CourseRows {
   const announcements: Announcement[] = raw.announcements.map((a) => ({ id: a.id, courseId, title: a.title, body: htmlToText(a.body), postedAt: a.start ?? a.created }));
   const messages: Message[] = raw.conversations.map((c) => ({ id: c.id, courseId, subject: `Conversation of ${c.total} message${c.total === 1 ? "" : "s"}`, sentAt: c.updated ?? c.created }));
   return { items, grades, files, announcements, messages };
-}
-
-/** Changes when anything in the course changed: used to decide which courses a rerun reads again. */
-export function fingerprint(raw: RawCourse): string {
-  const sorted = <T>(rows: T[], line: (row: T) => string) => rows.map(line).sort();
-  const parts = [
-    sorted(raw.contents, (c) => [c.id, c.title, c.modified ?? "", c.handler, (c.attachments ?? []).map((a) => a.id).sort().join("+")].join("|")),
-    sorted(raw.columns, (c) => [c.id, c.name, c.possible ?? "", c.due ?? ""].join("|")),
-    sorted(raw.grades, (g) => [g.columnId, g.status, g.score ?? "", g.last ?? ""].join("|")),
-    sorted(raw.announcements, (a) => [a.id, a.title, a.start ?? "", a.created ?? "", a.body.length].join("|")),
-    sorted(raw.conversations, (c) => [c.id, c.updated ?? "", c.total].join("|")),
-  ];
-  return createHash("sha256").update(JSON.stringify(parts)).digest("hex").slice(0, 16);
 }

@@ -1,16 +1,16 @@
 // One export, start to finish:
 //  1. open the saved sign-in in TinyFish's browser and read what the portal itself reports
-//  2. work out which courses changed since the last run
-//  3. have the TinyFish Agent read the Grades page of each changed course, and check each reading
+//  2. work out which courses have graded work the export does not hold yet
+//  3. have the TinyFish Agent read the Grades page of each of those courses, and check each reading
 //  4. merge into the export kept from earlier runs, so only what is new is added
 //  5. fetch the documents that are new
 //  6. write the JSON, the CSV files, the list of changes, the manifest and the sealed list
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { courseRow, cut, fingerprint, mapCourse, type CourseRows, type RawCourse } from "../core/blackboard.ts";
+import { courseRow, cut, mapCourse, type CourseRows, type RawCourse } from "../core/blackboard.ts";
 import { csvFiles } from "../core/csv.ts";
-import { applyReading, type Reading } from "../core/match.ts";
+import { applyReading, sameGrades, type Reading } from "../core/match.ts";
 import { merge, type Change } from "../core/merge.ts";
 import { emptyExport, TABLES, type Export, type Tables } from "../core/model.ts";
 import { seal } from "../core/seal.ts";
@@ -55,7 +55,6 @@ interface Overview {
 }
 
 interface State {
-  fingerprints: Record<string, string>;
   ledger: SpendLine[];
   readings: Record<string, CourseReading>;
   /** Documents left out on purpose, with the reason. */
@@ -96,7 +95,7 @@ export async function runExport(cfg: Config, opt: Options) {
   const at = (file: string) => join(cfg.dataDir, file);
   mkdirSync(cfg.dataDir, { recursive: true });
   const base = readJson<Export>(at("export.json")) ?? emptyExport("Blackboard Learn");
-  const state = readJson<State>(at("state.json")) ?? { fingerprints: {}, ledger: [], readings: {}, skipped: {}, overview: null };
+  const state = readJson<State>(at("state.json")) ?? { ledger: [], readings: {}, skipped: {}, overview: null };
   const ledger = new Ledger(cfg.capUsd, state.ledger);
   const saveState = () => writeWhole(at("state.json"), JSON.stringify({ ...state, ledger: ledger.lines }, null, 1));
   const api = new TinyFish(cfg.key);
@@ -127,10 +126,14 @@ export async function runExport(cfg: Config, opt: Options) {
   }
   await portal.close(true);
 
-  // 2. Which courses changed since the last run. A first export that stops at a date is fingerprinted as cut.
-  const prints = new Map([...feeds].map(([id, feed]) => [id, fingerprint(cut(feed, opt.until))]));
-  const changed = members.filter((m) => feeds.has(m.id) && (opt.full || state.fingerprints[m.id] !== prints.get(m.id)));
-  log(`${changed.length} of ${feeds.size} open courses changed since the last run${changed.length ? "" : ": nothing to read"}.`);
+  // 2. Every open course's rows, cut to the date asked for. Content, announcements and documents come
+  //    from the feed and cost nothing. The Agent is needed only where the portal's graded work is not
+  //    what the export already holds.
+  const rowsOf = new Map<string, CourseRows>();
+  for (const [id, feed] of feeds) rowsOf.set(id, mapCourse(id, cut(feed, opt.until)));
+  const held = (id: string) => base.grades.filter((g) => g.courseId === id);
+  const toRead = members.filter((m) => feeds.has(m.id) && (opt.full || !sameGrades(held(m.id), rowsOf.get(m.id)!.grades)));
+  log(`${toRead.length} of ${feeds.size} open courses have graded work the export does not hold yet${toRead.length ? ": the Agent reads those" : ", so no Agent run is needed"}.`);
 
   const runIds: string[] = [];
   let steps = 0;
@@ -161,19 +164,12 @@ export async function runExport(cfg: Config, opt: Options) {
     saveState();
   }
 
-  // 3b. The Agent reads the Grades page of each changed course. A reading is kept only when its rows
+  // 3b. The Agent reads the Grades page of each of those courses. A reading is kept only when its rows
   //     are the portal's own rows; it is judged against the whole course, then cut to the date asked for.
-  const rowsOf = new Map<string, CourseRows>();
-  const trusted = new Set<string>();
-  await pool(changed, 2, async (m) => {
-    const feed = feeds.get(m.id)!;
-    const whole = mapCourse(m.id, feed);
-    const kept = mapCourse(m.id, cut(feed, opt.until));
-    rowsOf.set(m.id, kept);
-    if (whole.grades.length === 0) {
-      trusted.add(m.id);
-      return;
-    }
+  await pool(toRead, 2, async (m) => {
+    const whole = mapCourse(m.id, feeds.get(m.id)!);
+    const kept = rowsOf.get(m.id)!;
+    if (whole.grades.length === 0) return;
     for (let attempt = 0; attempt < 2; attempt++) {
       ledger.mustHaveRoom(MAX_STEPS * STEP_USD, `reading the grades of ${m.code}`);
       const id = await api.startRun({ url: gradesUrl(cfg.origin, m.id, m.ultra), goal: GRADES_GOAL, output_schema: GRADES_SCHEMA, profile_id: profile.id, max_steps: MAX_STEPS, max_seconds: 240 });
@@ -187,22 +183,33 @@ export async function runExport(cfg: Config, opt: Options) {
       if (reading.trusted) {
         const keep = new Set(kept.grades.map((g) => g.id));
         kept.grades = grades.filter((g) => keep.has(g.id));
-        trusted.add(m.id);
         log(`  ${m.code}: the Agent read ${reading.agentRows} rows in ${run.num_of_steps} steps; ${reading.equal} of ${reading.matched} scores equal the portal's${reading.differs ? `, ${reading.differs} differ` : ""}${reading.notOnPage ? `, ${reading.notOnPage} not shown on the page` : ""}.`);
         return;
       }
       log(`  ${m.code}: the Agent's reading was refused (${reading.matched} of ${reading.agentRows} rows are the portal's); ${attempt === 0 ? "reading it once more" : "left unread and marked so"}.`);
     }
+    // Refused twice: a row an earlier run read, and whose score has not moved, keeps that reading.
+    const before = new Map(held(m.id).map((g) => [g.id, g]));
+    kept.grades = kept.grades.map((g) => {
+      const was = before.get(g.id);
+      return was && was.score === g.score && was.check !== "unread" ? { ...g, shown: was.shown, check: was.check } : g;
+    });
   });
 
-  // 4. Merge. Courses that did not change are not touched; nothing already taken home is ever dropped.
+  // 4. Merge by the portal's own ids, so only what is new is added. Graded work is merged only for the
+  //    courses the Agent read; nothing already taken home is ever dropped.
+  const read = new Set(toRead.map((m) => m.id));
   const found: Tables = { courses: members.map(courseRow), items: [], grades: [], files: [], announcements: [], messages: [] };
-  for (const rows of rowsOf.values()) for (const t of ["items", "grades", "files", "announcements", "messages"] as const) (found[t] as unknown[]).push(...rows[t]);
+  for (const [id, rows] of rowsOf) {
+    for (const t of ["items", "grades", "files", "announcements", "messages"] as const) {
+      if (t === "grades" && !read.has(id)) continue;
+      (found[t] as unknown[]).push(...rows[t]);
+    }
+  }
   const { next, changes } = merge(base, found);
   next.exportedAt = new Date().toISOString();
   const run = { id: runId, at: startedAt, kind: first ? ("export" as const) : ("rerun" as const), until: opt.until, steps, usd: Math.round(steps * STEP_USD * 1000) / 1000, added: changes.filter((c) => c.what === "new").length, changed: changes.filter((c) => c.what === "changed").length, tinyfishRunIds: runIds };
   next.runs.push(run);
-  for (const m of changed) if (trusted.has(m.id)) state.fingerprints[m.id] = prints.get(m.id)!;
   const write = (changesNow: readonly Change[]) => {
     writeWhole(at("export.json"), JSON.stringify(next, null, 1));
     for (const [name, text] of Object.entries(csvFiles(next))) writeWhole(at(`csv/${name}`), text);

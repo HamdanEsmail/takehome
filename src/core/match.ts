@@ -85,3 +85,15 @@ export function applyReading(grades: readonly Grade[], rows: readonly AgentRow[]
     reading: { agentRows: rows.length, matched, equal, differs: matched - equal, pageOnly: rows.length - matched, notOnPage: trusted ? out.length - matched : 0, trusted },
   };
 }
+
+/**
+ * True when the portal's graded work for a course is what the export already holds, with every row
+ * read. The Agent then has nothing new to read there, and a rerun leaves the course's Grades page alone.
+ */
+export function sameGrades(held: readonly Grade[], portal: readonly Grade[]): boolean {
+  if (held.length !== portal.length || held.some((g) => g.check === "unread")) return false;
+  const line = (g: Grade) => [g.id, g.title, g.score ?? "", g.possible ?? "", g.status, g.submittedAt ?? ""].join("|");
+  const mine = held.map(line).sort();
+  const theirs = portal.map(line).sort();
+  return mine.every((row, i) => row === theirs[i]);
+}

@@ -48,8 +48,8 @@ const COURSE_FEED = (courseId: string) => `(async (c) => { const contents = [];
     if (depth < 8 && x.hasChildren) await walk('/learn/api/public/v1/courses/' + c + '/contents/' + x.id + '/children?limit=200', depth + 1); } return r.status; };
   const contentStatus = await walk('/learn/api/public/v1/courses/' + c + '/contents?limit=200', 0);
   for (const it of contents) {
-    if (it.handler === 'resource/x-bb-file') { const a = await __get('/learn/api/public/v1/courses/' + c + '/contents/' + it.id + '/attachments'); if (a.status === 200 && a.j) it.attachments = (a.j.results || []).map(f => ({ id: f.id, fileName: f.fileName || f.id })); }
-    else if (it.handler === 'resource/x-bb-document' || it.handler === 'none') { const d = await __get('/learn/api/v1/courses/' + c + '/contents/' + it.id); const html = d.j?.body?.rawText || ''; if (html.includes('bbcswebdav')) it.body = html; }
+    if (it.handler === 'resource/x-bb-file' || it.handler === 'resource/x-bb-document' || it.handler === 'resource/x-bb-assignment') { const a = await __get('/learn/api/public/v1/courses/' + c + '/contents/' + it.id + '/attachments'); const list = a.status === 200 && a.j ? (a.j.results || []).map(f => ({ id: f.id, fileName: f.fileName || f.id })) : []; if (list.length) it.attachments = list; }
+    if (it.handler === 'resource/x-bb-document' || it.handler === 'none') { const d = await __get('/learn/api/v1/courses/' + c + '/contents/' + it.id); const html = d.j?.body?.rawText || ''; if (html.includes('bbcswebdav')) it.body = html; }
   }
   const cols = await __all('/learn/api/public/v2/courses/' + c + '/gradebook/columns?limit=200');
   const gr = await __all('/learn/api/public/v2/courses/' + c + '/gradebook/users/' + __uid + '?limit=200');
