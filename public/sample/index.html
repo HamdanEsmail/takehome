@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Takehome: the sample locker</title>
+<meta name="description" content="A made-up student&#39;s export in the Takehome viewer. Open your own export in the same viewer, in your browser only.">
+<meta name="author" content="Hamdan Esmail">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div class="wrap"><header class="top"><a class="mark" href="/"><i></i>Takehome</a><nav aria-label="Pages"><a href="/">Locker row</a><a href="/sample/" aria-current="page">Sample locker</a><a href="/how/">How it works</a><a href="/privacy/">Privacy</a><a href="https://github.com/HamdanEsmail/takehome">Code</a></nav></header></div>
+<main><div class="wrap"><section class="hero" style="padding-bottom:6px"><h1 style="max-width:14ch">The sample locker.</h1>
+<p id="whose">A made-up student at a made-up university.</p></section>
+<section style="padding-top:14px">
+<div class="drop"><p><b>Open your own export.</b> Choose the <span class="mono">export.json</span> that Takehome wrote for you. It is read by this page in your browser; this site has no server to send it to.</p><input id="own" type="file" accept="application/json,.json" aria-label="Open your own export.json"></div>
+<div id="viewer" class="viewer"></div>
+<noscript><p class="note">The viewer needs JavaScript. Without it, <a href="/sample/export.json">the sample export</a> is still there to read.</p></noscript>
+</section></div></main>
+<footer><div class="wrap"><span>Built by <a href="https://github.com/HamdanEsmail">Hamdan Esmail</a> for the TinyFish Student Bounty, Drop 002.</span><nav aria-label="More"><a href="https://github.com/HamdanEsmail/takehome">Source code</a><a href="/how/">How it works</a><a href="/privacy/">Privacy</a><a href="/sealed.json">The sealed list</a></nav></div></footer>
+<script src="/assets/viewer.js" defer></script>
+</body>
+</html>

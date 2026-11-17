@@ -42,10 +42,10 @@ ${script}
 }
 
 function locker(l: SealedLocker): string {
-  const tag = l.state === "locked" ? "Locked by the university" : l.fresh > 0 ? `<span class="new"><b>+${l.fresh}</b> new last run</span>` : l.firstMonth ? `${month(l.firstMonth)}${l.lastMonth && l.lastMonth !== l.firstMonth ? ` to ${month(l.lastMonth)}` : ""}` : "";
+  const tag = l.state === "locked" ? "Locked by the university" : l.fresh > 0 ? `<span class="new"><b>+${l.fresh}</b> new</span>` : l.firstMonth ? `${month(l.firstMonth)}${l.lastMonth && l.lastMonth !== l.firstMonth ? ` to ${month(l.lastMonth)}` : ""}` : "";
   const rows = l.state === "locked" && l.counts.items + l.counts.grades + l.counts.files === 0
-    ? `<dt>Inside</dt><dd>out of reach</dd>`
-    : `<dt>Graded</dt><dd>${l.counts.grades}</dd><dt>Checked</dt><dd>${l.counts.checked}</dd><dt>Items</dt><dd>${l.counts.items}</dd><dt>Files</dt><dd>${l.counts.files}</dd><dt>Size</dt><dd>${mb(l.kb)}</dd>`;
+    ? `<dt>Out of reach</dt><dd></dd>`
+    : `<dt>Graded</dt><dd>${l.counts.grades}</dd><dt>Checked</dt><dd>${l.counts.checked}</dd><dt>Items</dt><dd>${l.counts.items}</dd><dt>Files</dt><dd>${l.counts.files}</dd><dt>Saved</dt><dd>${l.saved}${l.kb > 0 ? `, ${mb(l.kb)}` : ""}</dd>`;
   return `<li class="locker${l.state === "locked" ? " locked" : ""}"><div class="vents" aria-hidden="true"><i></i><i></i><i></i></div><span class="plate">${String(l.locker).padStart(2, "0")}</span>
 <div class="label"><div class="bar" role="img" aria-label="Course name, sealed">${l.bar.map((n) => `<i style="width:${n * 6}px"></i>`).join("")}</div><dl>${rows}</dl></div>
 <p class="tag">${tag}</p>${l.state === "locked" ? '<span class="padlock" aria-hidden="true"></span>' : ""}</li>`;
@@ -69,8 +69,8 @@ function home(s: Sealed, opt: SiteOptions): string {
 ${row}
 </div></section>
 <section><div class="wrap two">
-<div><h2>Every run</h2><p class="lead">A rerun reads only the courses that changed since the last one, and adds only the rows that are new.</p>
-<div class="scroll"><table><thead><tr><th>Run</th><th>Day</th><th>What</th><th class="n">New rows</th><th class="n">Changed</th><th class="n">Agent steps</th><th class="n">Cost</th></tr></thead><tbody>${runs || '<tr><td colspan="7">No run yet.</td></tr>'}</tbody></table></div></div>
+<div><h2>Every run</h2><p class="lead">A rerun adds only the rows that are new, and sends the Agent only to courses whose graded work changed. Steps are the Agent's; each costs 1.6 cents.</p>
+<div class="scroll"><table><thead><tr><th>Run</th><th>Day</th><th>What</th><th class="n">New</th><th class="n">Changed</th><th class="n">Steps</th><th class="n">Cost</th></tr></thead><tbody>${runs || '<tr><td colspan="7">No run yet.</td></tr>'}</tbody></table></div></div>
 <div><h2>Checked, not trusted</h2><p class="lead">The Agent reads each course's Grades page as I see it. Every row it returns is compared with what the portal itself reports, and a reading whose rows are not the portal's own is refused.</p>
 <p class="note">On the first day one run finished "completed" and handed back twelve rows that were on no page. The check refused all twelve. <a href="/how/">How the check works</a></p></div>
 </div></section>

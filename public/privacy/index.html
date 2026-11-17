@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Takehome: privacy</title>
+<meta name="description" content="What Takehome publishes about a student&#39;s portal (counts only) and what it never does.">
+<meta name="author" content="Hamdan Esmail">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div class="wrap"><header class="top"><a class="mark" href="/"><i></i>Takehome</a><nav aria-label="Pages"><a href="/">Locker row</a><a href="/sample/">Sample locker</a><a href="/how/">How it works</a><a href="/privacy/" aria-current="page">Privacy</a><a href="https://github.com/HamdanEsmail/takehome">Code</a></nav></header></div>
+<main><div class="wrap"><section class="hero" style="padding-bottom:10px"><h1 style="max-width:15ch">What leaves my computer.</h1>
+<p>One file: the sealed list. It is built from an allow-list, so a field that is not named there cannot be published by mistake.</p></section>
+<section style="padding-top:20px"><div class="two">
+<div><h2>In the sealed list</h2><ul class="plain">
+<li>How many courses, and how many the university has locked</li>
+<li>For each course: its term, counts of items, graded work, documents and announcements, the total size, the first and last month</li>
+<li>For each document: its kind (pdf, docx, pptx), its size in KB, whether it was saved</li>
+<li>For each run: the day, the Agent's steps, the cost, how many rows were new</li>
+<li>A fingerprint per course and per document, made with a secret salt that never leaves my computer</li>
+</ul></div>
+<div><h2>Never in it</h2><ul class="plain">
+<li>A course name or code, a document name, an announcement</li>
+<li>A score, a grade or any feedback</li>
+<li>A person's name: mine, a teacher's or a classmate's</li>
+<li>The portal's ids, and TinyFish's run ids</li>
+<li>The length of a name: the bars on each door take their length from the fingerprint, because a real length could give a course away to anyone holding the catalogue</li>
+</ul></div></div>
+<p class="note" style="margin-top:26px">A test builds the sealed list from an export and fails if any word of that export appears in it. You can read the list this site was built from: <a href="/sealed.json">sealed.json</a>.</p>
+</section></div>
+<section class="band"><div class="wrap two">
+<div><h2>My sign-in</h2><ul class="plain">
+<li>I type my password once, into Blackboard's own page, inside a TinyFish browser. It is never in this code, in a settings file or in an Agent goal.</li>
+<li>The session's cookies stay in TinyFish's browser. They are not copied to my computer.</li>
+<li>I do not use the password vault: it would store my university password with a third party.</li>
+<li>When I am done I delete the profile on TinyFish, and the saved session is gone.</li>
+</ul></div>
+<div><h2>Other people</h2><ul class="plain">
+<li>Only my own account, and only reading.</li>
+<li>Classmates' names and posts are not exported. A conversation is kept as its date and its number of messages.</li>
+<li>TinyFish's run pages hold real pictures of my portal, so their links go to the judges only.</li>
+<li>The films blur every text area in code, frame by frame, before anything is cut.</li>
+</ul></div>
+</div></section></main>
+<footer><div class="wrap"><span>Built by <a href="https://github.com/HamdanEsmail">Hamdan Esmail</a> for the TinyFish Student Bounty, Drop 002.</span><nav aria-label="More"><a href="https://github.com/HamdanEsmail/takehome">Source code</a><a href="/how/">How it works</a><a href="/privacy/">Privacy</a><a href="/sealed.json">The sealed list</a></nav></div></footer>
+
+</body>
+</html>

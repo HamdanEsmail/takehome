@@ -1,0 +1,1824 @@
+{
+ "version": 1,
+ "portal": "Blackboard Learn",
+ "sealedOn": "2026-11-17",
+ "totals": {
+  "courses": 17,
+  "locked": 5,
+  "items": 502,
+  "grades": 109,
+  "checked": 96,
+  "files": 198,
+  "saved": 0,
+  "announcements": 90,
+  "messages": 8,
+  "kb": 0
+ },
+ "lockers": [
+  {
+   "locker": 1,
+   "term": "Fall 2025",
+   "state": "locked",
+   "fp": "7fd4f8a5",
+   "bar": [
+    8,
+    8,
+    6
+   ],
+   "counts": {
+    "items": 0,
+    "grades": 0,
+    "checked": 0,
+    "files": 0,
+    "announcements": 0,
+    "messages": 0
+   },
+   "kb": 0,
+   "saved": 0,
+   "fresh": 1,
+   "firstMonth": null,
+   "lastMonth": null
+  },
+  {
+   "locker": 2,
+   "term": "Fall 2025",
+   "state": "open",
+   "fp": "8c56efa2",
+   "bar": [
+    8,
+    8,
+    3,
+    5
+   ],
+   "counts": {
+    "items": 15,
+    "grades": 18,
+    "checked": 13,
+    "files": 4,
+    "announcements": 15,
+    "messages": 0
+   },
+   "kb": 0,
+   "saved": 0,
+   "fresh": 53,
+   "firstMonth": "2025-08",
+   "lastMonth": "2025-11"
+  },
+  {
+   "locker": 3,
+   "term": "Fall 2025",
+   "state": "locked",
+   "fp": "adbaee54",
+   "bar": [
+    9,
+    7,
+    6,
+    4
+   ],
+   "counts": {
+    "items": 0,
+    "grades": 0,
+    "checked": 0,
+    "files": 0,
+    "announcements": 0,
+    "messages": 0
+   },
+   "kb": 0,
+   "saved": 0,
+   "fresh": 1,
+   "firstMonth": null,
+   "lastMonth": null
+  },
+  {
+   "locker": 4,
+   "term": "Fall 2025",
+   "state": "open",
+   "fp": "c425545e",
+   "bar": [
+    4,
+    6,
+    7
+   ],
+   "counts": {
+    "items": 50,
+    "grades": 9,
+    "checked": 9,
+    "files": 0,
+    "announcements": 0,
+    "messages": 0
+   },
+   "kb": 0,
+   "saved": 0,
+   "fresh": 60,
+   "firstMonth": "2025-10",
+   "lastMonth": "2025-11"
+  },
+  {
+   "locker": 5,
+   "term": "Fall 2025",
+   "state": "locked",
+   "fp": "c66c9c85",
+   "bar": [
+    3,
+    6
+   ],
+   "counts": {
+    "items": 0,
+    "grades": 0,
+    "checked": 0,
+    "files": 0,
+    "announcements": 0,
+    "messages": 0
+   },
+   "kb": 0,
+   "saved": 0,
+   "fresh": 1,
+   "firstMonth": null,
+   "lastMonth": null
+  },
+  {
+   "locker": 6,
+   "term": "Fall 2025",
+   "state": "open",
+   "fp": "fd241b60",
+   "bar": [
+    3,
+    3,
+    9
+   ],
+   "counts": {
+    "items": 113,
+    "grades": 12,
+    "checked": 10,
+    "files": 33,
+    "announcements": 0,
+    "messages": 0
+   },
+   "kb": 0,
+   "saved": 0,
+   "fresh": 159,
+   "firstMonth": "2025-09",
+   "lastMonth": "2025-11"
+  },
+  {
+   "locker": 7,
+   "term": "Spring 2026",
+   "state": "open",
+   "fp": "0578b1b2",
+   "bar": [
+    6,
+    9,
+    10,
+    7
+   ],
+   "counts": {
+    "items": 30,
+    "grades": 14,
+    "checked": 14,
+    "files": 2,
+    "announcements": 7,
+    "messages": 0
+   },
+   "kb": 0,
+   "saved": 0,
+   "fresh": 54,
+   "firstMonth": "2026-01",
+   "lastMonth": "2026-05"
+  },
+  {
+   "locker": 8,
+   "term": "Spring 2026",
+   "state": "locked",
+   "fp": "125717e5",
+   "bar": [
+    9,
+    8
+   ],
+   "counts": {
+    "items": 0,
+    "grades": 0,
+    "checked": 0,
+    "files": 0,
+    "announcements": 0,
+    "messages": 0
+   },
+   "kb": 0,
+   "saved": 0,
+   "fresh": 1,
+   "firstMonth": null,
+   "lastMonth": null
+  },
+  {
+   "locker": 9,
+   "term": "Spring 2026",
+   "state": "locked",
+   "fp": "aa2f8f09",
+   "bar": [
+    5,
+    11,
+    3,
+    9
+   ],
+   "counts": {
+    "items": 0,
+    "grades": 0,
+    "checked": 0,
+    "files": 0,
+    "announcements": 0,
+    "messages": 0
+   },
+   "kb": 0,
+   "saved": 0,
+   "fresh": 1,
+   "firstMonth": null,
+   "lastMonth": null
+  },
+  {
+   "locker": 10,
+   "term": "Spring 2026",
+   "state": "open",
+   "fp": "dcbbd90a",
+   "bar": [
+    10,
+    4,
+    4
+   ],
+   "counts": {
+    "items": 59,
+    "grades": 22,
+    "checked": 22,
+    "files": 36,
+    "announcements": 1,
+    "messages": 0
+   },
+   "kb": 0,
+   "saved": 0,
+   "fresh": 119,
+   "firstMonth": "2026-01",
+   "lastMonth": "2026-05"
+  },
+  {
+   "locker": 11,
+   "term": "Spring 2026",
+   "state": "open",
+   "fp": "e17d08de",
+   "bar": [
+    11,
+    11
+   ],
+   "counts": {
+    "items": 43,
+    "grades": 13,
+    "checked": 10,
+    "files": 4,
+    "announcements": 19,
+    "messages": 0
+   },
+   "kb": 0,
+   "saved": 0,
+   "fresh": 80,
+   "firstMonth": "2026-01",
+   "lastMonth": "2026-05"
+  },
+  {
+   "locker": 12,
+   "term": "Summer 2026",
+   "state": "open",
+   "fp": "04a67dd7",
+   "bar": [
+    7,
+    11,
+    11
+   ],
+   "counts": {
+    "items": 6,
+    "grades": 2,
+    "checked": 2,
+    "files": 0,
+    "announcements": 11,
+    "messages": 0
+   },
+   "kb": 0,
+   "saved": 0,
+   "fresh": 20,
+   "firstMonth": "2026-05",
+   "lastMonth": "2026-06"
+  },
+  {
+   "locker": 13,
+   "term": "Fall 2026",
+   "state": "open",
+   "fp": "53d5d3f0",
+   "bar": [
+    9,
+    7,
+    9,
+    11
+   ],
+   "counts": {
+    "items": 20,
+    "grades": 1,
+    "checked": 1,
+    "files": 14,
+    "announcements": 14,
+    "messages": 1
+   },
+   "kb": 0,
+   "saved": 0,
+   "fresh": 51,
+   "firstMonth": "2026-09",
+   "lastMonth": "2026-10"
+  },
+  {
+   "locker": 14,
+   "term": "Fall 2026",
+   "state": "open",
+   "fp": "a853d446",
+   "bar": [
+    5,
+    8
+   ],
+   "counts": {
+    "items": 24,
+    "grades": 3,
+    "checked": 1,
+    "files": 12,
+    "announcements": 6,
+    "messages": 0
+   },
+   "kb": 0,
+   "saved": 0,
+   "fresh": 46,
+   "firstMonth": "2026-08",
+   "lastMonth": "2026-10"
+  },
+  {
+   "locker": 15,
+   "term": "Fall 2026",
+   "state": "open",
+   "fp": "e44fafd6",
+   "bar": [
+    10,
+    7
+   ],
+   "counts": {
+    "items": 23,
+    "grades": 2,
+    "checked": 2,
+    "files": 13,
+    "announcements": 0,
+    "messages": 4
+   },
+   "kb": 0,
+   "saved": 0,
+   "fresh": 43,
+   "firstMonth": "2026-08",
+   "lastMonth": "2026-10"
+  },
+  {
+   "locker": 16,
+   "term": "Fall 2026",
+   "state": "open",
+   "fp": "e7bdf16d",
+   "bar": [
+    3,
+    10
+   ],
+   "counts": {
+    "items": 78,
+    "grades": 9,
+    "checked": 9,
+    "files": 48,
+    "announcements": 13,
+    "messages": 1
+   },
+   "kb": 0,
+   "saved": 0,
+   "fresh": 150,
+   "firstMonth": "2026-08",
+   "lastMonth": "2026-10"
+  },
+  {
+   "locker": 17,
+   "term": "Fall 2026",
+   "state": "open",
+   "fp": "f00821ca",
+   "bar": [
+    11,
+    9
+   ],
+   "counts": {
+    "items": 41,
+    "grades": 4,
+    "checked": 3,
+    "files": 32,
+    "announcements": 4,
+    "messages": 2
+   },
+   "kb": 0,
+   "saved": 0,
+   "fresh": 84,
+   "firstMonth": "2026-09",
+   "lastMonth": "2026-11"
+  }
+ ],
+ "files": [
+  {
+   "locker": 2,
+   "type": "zip",
+   "kb": 0,
+   "saved": false,
+   "fp": "1ec769ab"
+  },
+  {
+   "locker": 2,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "20d0d40d"
+  },
+  {
+   "locker": 2,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "30dd8a5e"
+  },
+  {
+   "locker": 2,
+   "type": "zip",
+   "kb": 0,
+   "saved": false,
+   "fp": "474fb2f2"
+  },
+  {
+   "locker": 6,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "051a7e2b"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "193d4f1a"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "2cbbbb2b"
+  },
+  {
+   "locker": 6,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "2d36cd65"
+  },
+  {
+   "locker": 6,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "2e97c892"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "3a463dac"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "3a87fb84"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "437e1541"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "57063351"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "6c59885e"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "72e43d31"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "757f4959"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "830cd9da"
+  },
+  {
+   "locker": 6,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "8607a515"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "8fdd9cb5"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "9c3dfc1d"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "9e65b65a"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "9f7a0111"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "a4679e45"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "a712dde1"
+  },
+  {
+   "locker": 6,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "aa107763"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "b5d806ee"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "ba75224c"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "bb83360f"
+  },
+  {
+   "locker": 6,
+   "type": "mp4",
+   "kb": 0,
+   "saved": false,
+   "fp": "c7774ed8"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "dbb2acc2"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "de1ec9d4"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "de4db89e"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "e181f1ae"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "eff8d2c5"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "f089487e"
+  },
+  {
+   "locker": 6,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "f51123f1"
+  },
+  {
+   "locker": 6,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "fdfb6a8f"
+  },
+  {
+   "locker": 7,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "58538ef7"
+  },
+  {
+   "locker": 7,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "619c4344"
+  },
+  {
+   "locker": 10,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "0d83356e"
+  },
+  {
+   "locker": 10,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "0eb81a06"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "1880bcd0"
+  },
+  {
+   "locker": 10,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "1b439c16"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "2d62fde9"
+  },
+  {
+   "locker": 10,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "37f5343d"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "3aa109a9"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "3b5a5f42"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "3c4d7b12"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "3cfa9373"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "3df041bf"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "4e3b2d2c"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "52b389eb"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "5ef04b87"
+  },
+  {
+   "locker": 10,
+   "type": "mp4",
+   "kb": 0,
+   "saved": false,
+   "fp": "65c26c4f"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "6814301c"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "744adcf2"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "75b07d61"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "771f88f7"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "7d01d76e"
+  },
+  {
+   "locker": 10,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "83142f62"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "8e8b394d"
+  },
+  {
+   "locker": 10,
+   "type": "mp4",
+   "kb": 0,
+   "saved": false,
+   "fp": "950787ca"
+  },
+  {
+   "locker": 10,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "96b3e690"
+  },
+  {
+   "locker": 10,
+   "type": "mp4",
+   "kb": 0,
+   "saved": false,
+   "fp": "a4d2f59b"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "ac3d22cc"
+  },
+  {
+   "locker": 10,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "bead6f13"
+  },
+  {
+   "locker": 10,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "c2d8aea4"
+  },
+  {
+   "locker": 10,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "c4a72ccb"
+  },
+  {
+   "locker": 10,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "c5d410eb"
+  },
+  {
+   "locker": 10,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "caf44f10"
+  },
+  {
+   "locker": 10,
+   "type": "mp4",
+   "kb": 0,
+   "saved": false,
+   "fp": "e178d170"
+  },
+  {
+   "locker": 10,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "e8669dc9"
+  },
+  {
+   "locker": 10,
+   "type": "mp4",
+   "kb": 0,
+   "saved": false,
+   "fp": "e8e6d544"
+  },
+  {
+   "locker": 10,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "eefd1010"
+  },
+  {
+   "locker": 10,
+   "type": "mp4",
+   "kb": 0,
+   "saved": false,
+   "fp": "f89000a0"
+  },
+  {
+   "locker": 11,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "19fddafa"
+  },
+  {
+   "locker": 11,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "5aa03b95"
+  },
+  {
+   "locker": 11,
+   "type": "ipynb",
+   "kb": 0,
+   "saved": false,
+   "fp": "68b65871"
+  },
+  {
+   "locker": 11,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "ab2e63e3"
+  },
+  {
+   "locker": 13,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "0601fc0d"
+  },
+  {
+   "locker": 13,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "15c6af29"
+  },
+  {
+   "locker": 13,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "3462ed85"
+  },
+  {
+   "locker": 13,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "47203b1f"
+  },
+  {
+   "locker": 13,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "8bbf8e14"
+  },
+  {
+   "locker": 13,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "8d7b3a11"
+  },
+  {
+   "locker": 13,
+   "type": "mp4",
+   "kb": 0,
+   "saved": false,
+   "fp": "a004fc72"
+  },
+  {
+   "locker": 13,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "ba0bf925"
+  },
+  {
+   "locker": 13,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "baf0ab8f"
+  },
+  {
+   "locker": 13,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "c673238e"
+  },
+  {
+   "locker": 13,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "cc9c56c9"
+  },
+  {
+   "locker": 13,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "cd34a553"
+  },
+  {
+   "locker": 13,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "d6c8e095"
+  },
+  {
+   "locker": 13,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "d8673eca"
+  },
+  {
+   "locker": 14,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "0f627055"
+  },
+  {
+   "locker": 14,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "2bb388b7"
+  },
+  {
+   "locker": 14,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "3c35794f"
+  },
+  {
+   "locker": 14,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "56480eb9"
+  },
+  {
+   "locker": 14,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "5f15488c"
+  },
+  {
+   "locker": 14,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "7af45a63"
+  },
+  {
+   "locker": 14,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "960af381"
+  },
+  {
+   "locker": 14,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "96f649dc"
+  },
+  {
+   "locker": 14,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "9b1ad6f6"
+  },
+  {
+   "locker": 14,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "c326504c"
+  },
+  {
+   "locker": 14,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "e5449877"
+  },
+  {
+   "locker": 14,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "ef1ce2d2"
+  },
+  {
+   "locker": 15,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "0fcc637b"
+  },
+  {
+   "locker": 15,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "27875da6"
+  },
+  {
+   "locker": 15,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "37cef87f"
+  },
+  {
+   "locker": 15,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "4c94e9c4"
+  },
+  {
+   "locker": 15,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "51b89b22"
+  },
+  {
+   "locker": 15,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "66f7a1da"
+  },
+  {
+   "locker": 15,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "9f67f72b"
+  },
+  {
+   "locker": 15,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "a0f611fe"
+  },
+  {
+   "locker": 15,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "a8d0f93c"
+  },
+  {
+   "locker": 15,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "af3ac50f"
+  },
+  {
+   "locker": 15,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "b1f81235"
+  },
+  {
+   "locker": 15,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "bac1d264"
+  },
+  {
+   "locker": 15,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "e6bc866c"
+  },
+  {
+   "locker": 16,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "018a12b1"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "049c5414"
+  },
+  {
+   "locker": 16,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "062aa441"
+  },
+  {
+   "locker": 16,
+   "type": "other",
+   "kb": 0,
+   "saved": false,
+   "fp": "06890198"
+  },
+  {
+   "locker": 16,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "06e4b912"
+  },
+  {
+   "locker": 16,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "0bcda9bf"
+  },
+  {
+   "locker": 16,
+   "type": "other",
+   "kb": 0,
+   "saved": false,
+   "fp": "0d286f0e"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "1258a63f"
+  },
+  {
+   "locker": 16,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "1902611e"
+  },
+  {
+   "locker": 16,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "191f20bd"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "2edbeb13"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "3231e8b6"
+  },
+  {
+   "locker": 16,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "3ce523c8"
+  },
+  {
+   "locker": 16,
+   "type": "other",
+   "kb": 0,
+   "saved": false,
+   "fp": "424e67f0"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "505b5bd6"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "52705316"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "53c960c6"
+  },
+  {
+   "locker": 16,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "56483431"
+  },
+  {
+   "locker": 16,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "59fa4b55"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "5fc2e0d2"
+  },
+  {
+   "locker": 16,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "60210aaf"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "629928a4"
+  },
+  {
+   "locker": 16,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "62cd56cf"
+  },
+  {
+   "locker": 16,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "69cc774e"
+  },
+  {
+   "locker": 16,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "6ff4faea"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "77f18aed"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "7962c3ef"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "7e339ac6"
+  },
+  {
+   "locker": 16,
+   "type": "other",
+   "kb": 0,
+   "saved": false,
+   "fp": "7fdbfb62"
+  },
+  {
+   "locker": 16,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "80d087a4"
+  },
+  {
+   "locker": 16,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "904428ac"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "9a8a4876"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "a53c0327"
+  },
+  {
+   "locker": 16,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "ac9493b3"
+  },
+  {
+   "locker": 16,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "adef220e"
+  },
+  {
+   "locker": 16,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "b9594446"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "b9ccf2bd"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "c010c34d"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "c8bb6b07"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "ce69ee0b"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "d6c7869e"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "d7104503"
+  },
+  {
+   "locker": 16,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "dc769c87"
+  },
+  {
+   "locker": 16,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "e4e6ff13"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "ea33f9ec"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "eafe1c53"
+  },
+  {
+   "locker": 16,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "ef90e657"
+  },
+  {
+   "locker": 16,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "f1d7eff6"
+  },
+  {
+   "locker": 17,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "068ed590"
+  },
+  {
+   "locker": 17,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "0d67cdab"
+  },
+  {
+   "locker": 17,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "0e4b8599"
+  },
+  {
+   "locker": 17,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "0f7b4855"
+  },
+  {
+   "locker": 17,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "1fbb7ebb"
+  },
+  {
+   "locker": 17,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "21560788"
+  },
+  {
+   "locker": 17,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "3fe32aaf"
+  },
+  {
+   "locker": 17,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "418bb685"
+  },
+  {
+   "locker": 17,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "46e5df94"
+  },
+  {
+   "locker": 17,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "4d8829f0"
+  },
+  {
+   "locker": 17,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "5a81b59d"
+  },
+  {
+   "locker": 17,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "5dc09159"
+  },
+  {
+   "locker": 17,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "60b02af1"
+  },
+  {
+   "locker": 17,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "69fe18bf"
+  },
+  {
+   "locker": 17,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "6f651e0b"
+  },
+  {
+   "locker": 17,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "83c040a5"
+  },
+  {
+   "locker": 17,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "85b554a3"
+  },
+  {
+   "locker": 17,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "890a2964"
+  },
+  {
+   "locker": 17,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "944202f9"
+  },
+  {
+   "locker": 17,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "9b6cf36a"
+  },
+  {
+   "locker": 17,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "9cf8eb25"
+  },
+  {
+   "locker": 17,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "9fe461cb"
+  },
+  {
+   "locker": 17,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "a5cbb7f1"
+  },
+  {
+   "locker": 17,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "b404709c"
+  },
+  {
+   "locker": 17,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "b4691aaf"
+  },
+  {
+   "locker": 17,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "b5d836ca"
+  },
+  {
+   "locker": 17,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "c6ddead7"
+  },
+  {
+   "locker": 17,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "d76b0067"
+  },
+  {
+   "locker": 17,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "d963274d"
+  },
+  {
+   "locker": 17,
+   "type": "pptx",
+   "kb": 0,
+   "saved": false,
+   "fp": "e5e2729a"
+  },
+  {
+   "locker": 17,
+   "type": "docx",
+   "kb": 0,
+   "saved": false,
+   "fp": "f2f94763"
+  },
+  {
+   "locker": 17,
+   "type": "pdf",
+   "kb": 0,
+   "saved": false,
+   "fp": "f9149db9"
+  }
+ ],
+ "runs": [
+  {
+   "day": "2026-11-17",
+   "kind": "export",
+   "until": "2026-10-31",
+   "steps": 69,
+   "usd": 1.104,
+   "added": 924,
+   "changed": 0
+  }
+ ]
+}
