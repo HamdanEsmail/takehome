@@ -88,7 +88,13 @@ So a reading is accepted only when at least 60% of its rows are the portal's own
 
 ## What it does not do
 
-TBD_LIMITS
+- **Other portals.** It reads Blackboard only. What turns the portal's data into rows is one file (`src/core/blackboard.ts`), and the Agent's goals are another (`src/run/agent.ts`).
+- **Locked courses.** Nobody but the instructor can open a locked course. Takehome records that it exists and that it is locked. What was inside is gone unless an earlier run took it, which is the reason to run it before a course locks.
+- **Large files.** Files over 25 MB, mostly videos, are listed with their size and not fetched. `--max-file-mb` changes that.
+- **Text.** Only PDFs and Word files are turned into text. Fetch does not read PowerPoint files, and a scanned PDF gives little or none.
+- **Other people's words.** A conversation is kept as a date and a size. Discussion posts are not exported.
+- **Tests I have not taken** are never opened, so their questions are not in the export.
+- **No schedule.** I run it when I want a fresh copy. When the university ends the saved session, I sign in again by hand.
 
 ## Run it on your own Blackboard
 

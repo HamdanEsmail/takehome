@@ -101,7 +101,7 @@ export function seal(exp: Export, salt: string, lastChanges: readonly Change[] =
       fp: f,
       bar: Array.from({ length: words }, (_, w) => 3 + (d[w + 1]! % 9)),
       counts: { items: mine(exp.items).length, grades: grades.length, checked: grades.filter((g) => g.check === "match").length, files: files.length, announcements: mine(exp.announcements).length, messages: mine(exp.messages).length },
-      kb: files.reduce((n, f2) => n + kb(f2.bytes), 0),
+      kb: files.filter((f2) => f2.path !== null).reduce((n, f2) => n + kb(f2.bytes), 0),
       saved: files.filter((f2) => f2.path !== null).length,
       fresh: fresh.get(c.id) ?? 0,
       firstMonth: months[0] ?? null,

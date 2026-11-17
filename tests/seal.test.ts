@@ -129,3 +129,18 @@ describe("the sealed list", () => {
     expect(() => seal(sampleExport(), "")).toThrow(/salt/i);
   });
 });
+
+describe("sizes in the sealed list", () => {
+  it("counts a locker's size from the documents that were saved, not from ones only listed", () => {
+    const exp = sampleExport();
+    const [a, b] = exp.files.filter((f) => f.courseId === "_9001_1");
+    a!.path = "files/HAR101/a.docx";
+    a!.bytes = 2 * 1024 * 1024;
+    b!.path = null;
+    b!.bytes = 900 * 1024 * 1024;
+    for (const f of exp.files) if (f !== a && f !== b) f.bytes = null;
+    const locker = seal(exp, SALT).lockers.find((l) => l.saved === 1)!;
+    expect(locker.kb).toBe(2048);
+    expect(seal(exp, SALT).totals.kb).toBe(2048);
+  });
+});
