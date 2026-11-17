@@ -1,11 +1,14 @@
 // Takehome's command line.
 //   node src/cli.ts export [--until YYYY-MM-DD] [--full] [--no-files] [--max-file-mb 25]
 //   node src/cli.ts status
+//   node src/cli.ts site      builds the public site into ./public from the sealed list
 // Settings come from a file outside the repository (see .env.example); nothing secret is ever an argument.
-import { existsSync, readFileSync } from "node:fs";
-import { join, resolve } from "node:path";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { runExport, SignInNeeded, type Config } from "./run/export.ts";
 import { loadSettings } from "./settings.ts";
+import { buildSite } from "./site/build.ts";
 
 // The settings file wins over the shell. Its place can be given in TAKEHOME_SETTINGS.
 loadSettings(resolve(process.env.TAKEHOME_SETTINGS ?? "../.takehome.env"));
@@ -65,7 +68,24 @@ if (command === "export") {
   console.log(`Grade checks: ${Object.entries(m.gradeChecks).map(([k, n]) => `${k} ${n}`).join(", ")}`);
   console.log(`Runs: ${m.runs.map((r: { id: string; kind: string; added: number; changed: number; steps: number }) => `${r.id} ${r.kind} +${r.added} ~${r.changed} (${r.steps} steps)`).join("; ")}`);
   console.log(`Spent $${m.spend.usd.toFixed(2)} of $${m.spend.capUsd.toFixed(2)}`);
+} else if (command === "site") {
+  const sealedPath = join(config().dataDir, "sealed.json");
+  if (!existsSync(sealedPath)) {
+    console.error("No sealed list yet. Run an export first.");
+    process.exit(2);
+  }
+  const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+  const { sampleExport } = await import("../fixtures/sample.ts");
+  const files = buildSite(JSON.parse(readFileSync(sealedPath, "utf8")), sampleExport(), { codeUrl: process.env.TAKEHOME_CODE_URL ?? "https://github.com/HamdanEsmail/takehome" });
+  for (const [path, text] of Object.entries(files)) {
+    const to = join(root, "public", path);
+    mkdirSync(dirname(to), { recursive: true });
+    writeFileSync(to, text);
+  }
+  mkdirSync(join(root, "public", "assets"), { recursive: true });
+  for (const asset of ["site.css", "viewer.js"]) copyFileSync(join(root, "site", asset), join(root, "public", "assets", asset));
+  console.log(`Built ${Object.keys(files).length} files into public/ from the sealed list.`);
 } else {
-  console.error(`Unknown command "${command}". Use: export, status.`);
+  console.error(`Unknown command "${command}". Use: export, status, site.`);
   process.exit(2);
 }
