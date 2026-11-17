@@ -1,10 +1,14 @@
 // Takehome's command line.
 //   node src/cli.ts export [--until YYYY-MM-DD] [--full] [--no-files] [--max-file-mb 25]
 //   node src/cli.ts status
-// Settings come from the environment (see .env.example); nothing secret is ever an argument.
+// Settings come from a file outside the repository (see .env.example); nothing secret is ever an argument.
 import { existsSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { runExport, SignInNeeded, type Config } from "./run/export.ts";
+import { loadSettings } from "./settings.ts";
+
+// The settings file wins over the shell. Its place can be given in TAKEHOME_SETTINGS.
+loadSettings(resolve(process.env.TAKEHOME_SETTINGS ?? "../.takehome.env"));
 
 function config(): Config {
   const env = process.env;
@@ -45,10 +49,9 @@ if (command === "export") {
     console.log(`\nDone: ${out.run.kind} ${out.run.id}, ${out.run.added} new rows, ${out.run.changed} changed, ${out.run.steps} Agent steps ($${out.run.usd.toFixed(3)}).`);
     console.log(`The export now holds ${Object.entries(out.totals).map(([k, n]) => `${n} ${k}`).join(", ")}; ${out.saved} documents saved. Spent so far: $${out.spentUsd.toFixed(2)} of $${cfg.capUsd.toFixed(2)}.`);
     console.log(`It is in ${cfg.dataDir}`);
-    process.exit(0);
-  } catch (e) {
+    } catch (e) {
     console.error(e instanceof SignInNeeded ? `\n${e.message}` : `\nStopped: ${e instanceof Error ? e.message : String(e)}`);
-    process.exit(1);
+    process.exitCode = 1;
   }
 } else if (command === "status") {
   const path = join(config().dataDir, "manifest.json");
