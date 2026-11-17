@@ -88,7 +88,7 @@ td.n, th.n { text-align: right; padding-right: 0; }
 .steps li::before { content: counter(s, decimal-leading-zero); background: var(--brass); color: var(--brass-ink); font: 700 26px/1 var(--plate); padding: 8px 0 6px; text-align: center; border-radius: 2px; align-self: start; }
 .steps h3 { margin: 0 0 4px; font: 600 19px/1.25 var(--body); }
 .steps p { margin: 0; color: var(--ink-2); }
-.note { border-left: 4px solid var(--brass); padding: 4px 0 4px 16px; max-width: 66ch; }
+.note { background: var(--card); border: 1.5px solid var(--ink); border-radius: 3px; padding: 14px 16px 15px; max-width: 66ch; margin: 0; }
 code, .mono { font-family: var(--mono); font-size: 0.9em; }
 pre { background: var(--ink); color: var(--card); padding: 16px; border-radius: 4px; overflow-x: auto; font: 500 14px/1.5 var(--mono); }
 ul.plain { padding-left: 20px; margin: 0; display: grid; gap: 8px; max-width: 70ch; }
