@@ -52,7 +52,25 @@ takehome-data/
 
 ## Results on my account
 
-TBD_RESULTS
+On 17 November 2026, after three runs:
+
+| | |
+|---|---|
+| Courses | 17 over four terms: 12 open, 5 locked by their instructors |
+| Rows | 1,164: 522 content items, 124 graded items, 386 documents listed, 106 announcements, 9 conversations and the 17 courses |
+| Overview | The Agent saw 17 of 17 courses and recognised 5 of 5 locked ones |
+| Grades | The Agent read the Grades page of all 12 open courses. 112 scores equal the portal's own, 1 differs and is flagged, and 11 rows are held by the portal but not shown on the Grades page |
+| Documents | 363 of 386 saved, 699 MB, each with its SHA-256. 23 are over 25 MB and were left out, listed with their size |
+| Text | 231 PDFs and Word files turned into text and searchable |
+| Cost | $1.87 in all, of an $8 cap. That includes $0.42 of first tests |
+
+| Run | What | New rows | Changed | Agent steps | Cost |
+|---|---|---|---|---|---|
+| 1 | First export, up to 31 October | 924 | 0 | 69 | $1.10 |
+| 2 | Rerun, up to 31 October | 173 | 0 | 0 | $0.00 |
+| 3 | Rerun, everything | 67 | 7 | 22 | $0.35 |
+
+Run 2 exists because run 1 missed documents attached to pages in the older course layout. I fixed that, and the rerun brought them home without an Agent run. Run 3 took November: the Agent read only the 5 courses whose graded work had changed, and left the other 7 alone.
 
 ## Checked, not trusted
 
@@ -108,7 +126,7 @@ The export is written to `../takehome-data`. To see it, open [the sample locker]
 
 ## Tests
 
-`npm run check` runs the type check, the tests and a dry run of the deploy. The tests never touch the network: every portal answer and every Agent answer in them is made up. TBD_TESTS
+`npm run check` runs the type check, the tests and a dry run of the deploy. The tests never touch the network: every portal answer and every Agent answer in them is made up. There are 64 tests in 9 files.
 
 ## More
 

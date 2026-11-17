@@ -44,3 +44,29 @@ The second pass then found 173 more rows, mostly documents, and started no Agent
 ## 17 November: text you can search
 
 TinyFish Fetch reads the short-lived link the portal gives for a document and returns its text. It worked for a PDF and a Word file and refused a PowerPoint file. So PDFs and Word files are turned into text as they are saved, and `search` looks inside them. Fetch is free.
+
+## 17 November: the documents, and the rerun for November
+
+The second pass saved 349 of the 371 documents listed up to 31 October. The other 22 are each over 25 MB, mostly videos, and are listed with their size. 225 PDFs and Word files came back from Fetch as text.
+
+One number was wrong on the way. The size I showed for "documents saved" also counted the videos that were only listed, so it read about 2 GB when 0.7 GB was on disk. A test now pins it to saved documents.
+
+Then the third run, with no end date. The portal's graded work differed from the export in 5 of the 12 open courses, the five of this term, so the Agent read those five Grades pages and left the other seven alone: 22 steps, $0.35. Every one of the five readings passed the check. 67 rows were new and 7 changed.
+
+**Where it stands.** 1,164 rows: 522 content items, 124 graded items, 386 documents listed, 106 announcements, 9 conversations and the 17 courses. The counts of content items, graded items, announcements and conversations are the ones I counted in the portal's own data before I wrote any of this. Of the 124 graded items, 112 were read by the Agent and equal the portal's, 1 differs and is flagged, and 11 are held by the portal but not shown on the Grades page. 363 documents are saved (699 MB), 23 are left out for their size, and 231 are searchable.
+
+**What it cost.** $1.87 of an $8 cap: $0.42 of first tests, $1.10 for the first export, nothing for the second pass and $0.35 for the third. 117 Agent steps in all.
+
+## 17 November: the site
+
+The site is a folder of plain files on Cloudflare, built on my computer from the sealed list. There is no server code behind it, so there is nothing there that could hold my export.
+
+Before deploying I searched the built pages for every word of the real export: course ids, codes and titles, the titles of graded work and of content, document names and announcement titles, 2,662 strings in all. The only matches were words the site uses itself ("Spring", "Document", "setting") and three numbers. No course, document or score is on it.
+
+## What I did not do
+
+- I did not connect the password vault. When the university ends the saved session I sign in again by hand.
+- I did not export other people's words: a conversation is a date and a size.
+- I did not open any test I have not taken.
+- I did not download files over 25 MB. They are listed.
+- I did not put the run on a schedule. I run it when I want a fresh copy.
